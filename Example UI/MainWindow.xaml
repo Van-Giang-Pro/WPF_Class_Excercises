@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Example_UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True">
 <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="Blue">
             <MenuItem Header="File" Padding="2 3 0 0">
@@ -13,19 +13,16 @@
                     <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Example UI\Icon\File_Icon.png"/>
                 </MenuItem.Icon>
             </MenuItem>
-            
             <MenuItem Header="Tool" Padding="2 3 0 0" Margin="20 0 0 0">
                 <MenuItem.Icon>
                     <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Example UI\Icon\Tool_Icon.png"/>
                 </MenuItem.Icon>
             </MenuItem>
-            
             <MenuItem Header="Setting" Padding="2 3 0 0" Margin="20 0 0 0">
                 <MenuItem.Icon>
                     <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Example UI\Icon\Setting_Icon.png"/>
                 </MenuItem.Icon>
             </MenuItem>
-
             <MenuItem Header="Help" Padding="2 3 0 0" Margin="20 0 0 0">
                 <MenuItem.Icon>
                     <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Example UI\Icon\Help_Icon.png"/>
@@ -35,26 +32,21 @@
         <StatusBar DockPanel.Dock="Bottom" Background="Blue">
             <TextBlock Text="Ready"/>
         </StatusBar>
-        
         <StackPanel DockPanel.Dock="Left" Width="190" Background="DarkGray">
             <TextBlock Text="Explorer" Foreground="#0078d4" FontWeight="Bold" FontSize="18" Margin="5 12 0 0"/>
-            
             <StackPanel Orientation="Horizontal" Margin="10 4 0 0">
                 <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Example UI\Icon\Text_Icon.png" Width="18" Height="18"/>
                 <TextBlock Text="MainWindow.xaml" Foreground="Blue" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0 0 0"/>
             </StackPanel>
-
             <StackPanel Orientation="Horizontal" Margin="10 4 0 0">
                 <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Example UI\Icon\Text_Icon.png" Width="18" Height="18"/>
                 <TextBlock Text="App.xaml" Foreground="Blue" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0 0 0"/>
             </StackPanel>
-
             <StackPanel Orientation="Horizontal" Margin="10 4 0 0">
                 <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Example UI\Icon\Text_Icon.png" Width="18" Height="18"/>
                 <TextBlock Text="Models" Foreground="Blue" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0 0 0"/>
             </StackPanel>
         </StackPanel>
-     
         <Grid Background="Gray">
             <TextBlock Text="Vùng Chứa Nội Dung Chính" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="DarkGray"/>
         </Grid>

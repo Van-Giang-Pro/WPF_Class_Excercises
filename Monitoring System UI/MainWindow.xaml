@@ -9,7 +9,7 @@
     <StackPanel>
         <Border CornerRadius="10 10 0 0" BorderBrush="DarkGray" BorderThickness="2 2 2 2" ClipToBounds="True" Background="DarkSlateGray">
             <StackPanel Orientation="Horizontal" Background="Transparent" Height="50">
-                <Image Source="C:\Users\Giang\Desktop\Documents\Programming Project\WPF Class Excercises\Monitoring System UI\Icon\Monitoring_Icon.png" Width="30" Height="30" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Monitoring System UI\Icon\Monitoring_Icon.png" Width="30" Height="30" VerticalAlignment="Center" Margin="5 0 0 0"/>
                 <TextBlock Text="Hệ thống giám sát" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="5 -2 0 0" Foreground="White"/>
             </StackPanel>
         </Border>

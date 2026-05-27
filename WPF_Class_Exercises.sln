@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitoring System UI", "Mon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessboard UI", "Chessboard UI\Chessboard UI.csproj", "{0CB1CAAE-6049-4756-B64A-A1F3E07B0615}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manufacturing HMI", "Manufacturing HMI\Manufacturing HMI.csproj", "{268327AF-6994-473B-8762-57E3E4015457}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0CB1CAAE-6049-4756-B64A-A1F3E07B0615}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CB1CAAE-6049-4756-B64A-A1F3E07B0615}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CB1CAAE-6049-4756-B64A-A1F3E07B0615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{268327AF-6994-473B-8762-57E3E4015457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{268327AF-6994-473B-8762-57E3E4015457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{268327AF-6994-473B-8762-57E3E4015457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{268327AF-6994-473B-8762-57E3E4015457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
