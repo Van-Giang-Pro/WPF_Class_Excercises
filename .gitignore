@@ -1,5 +1,6 @@
-﻿.idea/
+.idea/
 bin/
 obj/
 WPF_Class_Exercises.sln.DotSettings.user
 .vs/
+*.user
