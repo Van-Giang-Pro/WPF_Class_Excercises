@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Chessboard_UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <!-- Split Columns -->
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,6 +18,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!-- Split Rows -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -27,6 +29,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <!-- Define Cell Color -->
         <TextBlock Grid.Row="0" Grid.Column="0" Background="White"/>
         <TextBlock Grid.Row="0" Grid.Column="1" Background="Black"/>
         <TextBlock Grid.Row="0" Grid.Column="2" Background="White"/>
