@@ -5,32 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Manufacturing_HMI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStyle="None" Background="Transparent" AllowsTransparency="True" >
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    <!-- Split Rows -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" CornerRadius="5 5 0 0" BorderBrush="DeepSkyBlue" BorderThickness="2 2 0 0" ClipToBounds="True" Background="DeepSkyBlue">
-            <StackPanel Background="Transparent" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-                <Image Source="C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\WPF_Class_Exercises\Manufacturing HMI\Icon\Setting_Icon.png" Width="20" Height="20" Margin="10 0 0 0"/>
-                <TextBlock Text="HMI - Dây Chuyền Sản Xuất" FontSize="16" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" Margin="5 -3 0 0"/>
-                <TextBlock Text="12:45:30 | 2026-03-21" FontSize="12" VerticalAlignment="Center" Foreground="White" Margin="430 0 0 0"/>
-            </StackPanel>
+        <!-- Header -->
+        <Border Grid.Row="0" CornerRadius="10 10 0 0" Background="DeepSkyBlue">
+            <Grid Height="50">
+                <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+                    <Image Source="Icon\Setting_Icon.png" Width="20" Height="20" Margin="10 0 0 0"/>
+                    <TextBlock Text="HMI - Dây Chuyền Sản Xuất" FontSize="16" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" Margin="5 -3 0 0"/>
+                </StackPanel>
+                <TextBlock Text="12:45:30 | 2026-03-21" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White" Margin="0 0 20 0"/>
+            </Grid>
         </Border>
+        <!-- Split Columns -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Height="45" Margin="12" Background="DeepSkyBlue" CornerRadius="8" BorderBrush="DeepSkyBlue">
+            <!-- Side Bar -->
+            <StackPanel Grid.Column="0" Background="#282534">
+                <Border Height="45" Margin="12 8 12 4" Background="DeepSkyBlue" CornerRadius="8" BorderBrush="DeepSkyBlue">
                     <TextBlock Text="Tổng Quan" Foreground="White" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <TextBlock Text="Báo Động" Foreground="White" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="Báo Động" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 12 0 0"/>
+                <TextBlock Text="Cài Đặt" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 22 0 0"/>
             </StackPanel>
-            <StackPanel Grid.Column="1">
-            </StackPanel>
+            <!-- Uniform Grid -->
+            <UniformGrid Grid.Column="1" Rows="2" Columns="2" Margin="0" Background="#343042">
+                <!-- Ô 1 : Nhiệt Độ Lò -->
+                <Border Margin="4" CornerRadius="8" Background="#2C293A">
+                    <StackPanel Margin="12" VerticalAlignment="Center">
+                        <TextBlock Text="Nhiệt Độ Lò" FontSize="14"/>
+                        <TextBlock Text="185 °C" FontSize="20" Foreground="GreenYellow" FontWeight="Bold" Margin="0 10 0 6"/>
+                        <Border Height="4" CornerRadius="2" Background="GreenYellow" HorizontalAlignment="Left" Width="160" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+                <!-- Ô 2 : Tốc Độ Băng Tải -->
+                <Border Margin="4" CornerRadius="8" Background="#2C293A">
+                    <StackPanel Margin="12" VerticalAlignment="Center">
+                        <TextBlock Text="Tốc Độ Băng Tải" FontSize="14"/>
+                        <TextBlock Text="185 °C" FontSize="20" Foreground="DeepSkyBlue" FontWeight="Bold" Margin="0 10 0 6"/>
+                        <Border Height="4" CornerRadius="2" Background="DeepSkyBlue" HorizontalAlignment="Left" Width="160" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+                <!-- Ô 3 : Áp Suất Không Khí -->
+                <Border Margin="4" CornerRadius="8" Background="#2C293A">
+                    <StackPanel Margin="12" VerticalAlignment="Center">
+                        <TextBlock Text="Áp Suất Không Khí" FontSize="14"/>
+                        <TextBlock Text="185 °C" FontSize="20" Foreground="Coral" FontWeight="Bold" Margin="0 10 0 6"/>
+                        <Border Height="4" CornerRadius="2" Background="Coral" HorizontalAlignment="Left" Width="160" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+                <!-- Ô 4 : Sản Lượng -->
+                <Border Margin="4" CornerRadius="8" Background="#2C293A">
+                    <StackPanel Margin="12" VerticalAlignment="Center">
+                        <TextBlock Text="Sản Lượng" FontSize="14"/>
+                        <TextBlock Text="1,247" FontSize="20" Foreground="MediumPurple" FontWeight="Bold" Margin="0 10 0 6"/>
+                        <Border Height="4" CornerRadius="2" Background="MediumPurple" HorizontalAlignment="Left" Width="160" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
         </Grid>
     </Grid>
 </Window>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessboard UI", "Chessboard
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manufacturing HMI", "Manufacturing HMI\Manufacturing HMI.csproj", "{268327AF-6994-473B-8762-57E3E4015457}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine Control Button Interface", "Machine Control Button Interface\Machine Control Button Interface.csproj", "{2D868BDA-0BBB-4318-B27C-42A73CD757A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{268327AF-6994-473B-8762-57E3E4015457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268327AF-6994-473B-8762-57E3E4015457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{268327AF-6994-473B-8762-57E3E4015457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D868BDA-0BBB-4318-B27C-42A73CD757A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D868BDA-0BBB-4318-B27C-42A73CD757A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D868BDA-0BBB-4318-B27C-42A73CD757A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D868BDA-0BBB-4318-B27C-42A73CD757A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
