@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitoring_System_UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="600" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="200" Width="600" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
     <!-- Header -->
     <StackPanel>
         <Border CornerRadius="10 10 0 0" BorderBrush="DarkGray" BorderThickness="2 2 2 2" Background="DarkSlateGray">
