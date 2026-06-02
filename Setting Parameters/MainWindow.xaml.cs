@@ -19,6 +19,7 @@ namespace Setting_Parameters
         public MainWindow()
         {
             InitializeComponent();
+            txtPassword.Password = "12345678";
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
