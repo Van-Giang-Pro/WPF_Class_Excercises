@@ -45,7 +45,8 @@
                     Foreground="DarkBlue" 
                     FontSize="15" 
                     Margin="0 0 0 8"/>
-                <TextBox Grid.Row="1" 
+                <TextBox x:Name="txtSpeed"
+                    Grid.Row="1" 
                     Grid.Column="0" 
                     Width="220" 
                     Height="34" 
@@ -57,7 +58,8 @@
                     BorderThickness="1" 
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"/>    
+                    VerticalContentAlignment="Center"
+                    TextChanged="txtSpeed_TextChanged"/>    
                 <!-- Cột trái : khoảng cách -->
                 <TextBlock Grid.Row="3" 
                     Grid.Column="0" 

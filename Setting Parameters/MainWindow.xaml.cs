@@ -22,9 +22,28 @@ namespace Setting_Parameters
             txtPassword.Password = "12345678";
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtSpeed_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (txtSpeed == null) return;
 
+            if (double.TryParse(txtSpeed.Text, out double speed))
+            {
+                if (speed < 0 || speed > 100)
+                {
+                    txtSpeed.BorderBrush = Brushes.Red;
+                    txtSpeed.BorderThickness = new Thickness(1.5);
+                }
+                else
+                {
+                    txtSpeed.BorderBrush = Brushes.Black;
+                    txtSpeed.BorderThickness = new Thickness(1);
+                }    
+            }
+            else
+            {
+                txtSpeed.BorderBrush = Brushes.Red;
+                txtSpeed.BorderThickness = new Thickness(1.5);
+            }    
         }
     }
 }
