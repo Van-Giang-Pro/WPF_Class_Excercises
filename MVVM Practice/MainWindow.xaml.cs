@@ -19,6 +19,7 @@ namespace MVVM_Practice
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }
