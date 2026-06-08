@@ -9,13 +9,13 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox Header="First Name">
-                <TextBox Text="{Binding FirstName}"/>
+                <TextBox Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </GroupBox>
             <GroupBox Header="Last Name">
-                <TextBox Text="{Binding FirstName}"/>
+                <TextBox Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </GroupBox>
             <GroupBox Header="Full Name">
-                <TextBox Text="{Binding FirstName}" IsReadOnly="True"/>
+                <TextBox Text="{Binding FirstName, Mode=OneWay}" IsReadOnly="True"/>
             </GroupBox>
         </StackPanel>
     </Grid>
