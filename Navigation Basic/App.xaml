@@ -1,0 +1,15 @@
+﻿<Application x:Class="Navigation_Basic.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Navigation_Basic"
+             xmlns:views="clr-namespace:Navigation_Basic.Views"
+             xmlns:viewmodels="clr-namespace:Navigation_Basic.ViewModels">
+    <Application.Resources> <!-- Gọi Là Ánh Xạ -->
+        <DataTemplate DataType="{x:Type viewmodels:AutoViewModel}">
+            <views:AutoView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:VisionViewModel}">
+            <views:VisionView/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
