@@ -32,8 +32,8 @@
         </Border>
         <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="0 1 0 0">
             <StackPanel Grid.Row="2" Height="50" Orientation="Horizontal">
-                <Button Content="Auto" Command="{Binding .}"/>
-                <Button Content="Vision" Command="{Binding .}"/>
+                <Button Content="Auto" Command="{Binding UpdateCurrentViewModel}" CommandParameter="Auto"/>
+                <Button Content="Vision" Command="{Binding UpdateCurrentViewModel}" CommandParameter="Vision"/>
             </StackPanel>
         </Border>
         <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}"/>

@@ -6,6 +6,5 @@ namespace Navigation_Basic.ViewModels
 {
     public class VisionViewModel : ViewModelBase
     {
-
     }
 }
