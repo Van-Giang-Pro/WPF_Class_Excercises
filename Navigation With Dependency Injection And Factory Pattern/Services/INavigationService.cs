@@ -7,7 +7,7 @@ namespace Navigation_With_Dependency_Injection_And_Factory_Pattern.Services
 {
     internal interface INavigationService
     {
-        ViewModelBase CurrentViewModel { get; }
+        ViewModelBase? CurrentViewModel { get; }
         void NavigateTo<TViewModel>() where TViewModel : ViewModelBase;
     }
 }

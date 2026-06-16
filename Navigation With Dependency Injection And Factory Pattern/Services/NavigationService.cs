@@ -12,7 +12,7 @@ namespace Navigation_With_Dependency_Injection_And_Factory_Pattern.Services
             this._viewModelFactory = viewModelFactory;
         }
 
-        public ViewModelBase CurrentViewModel
+        public ViewModelBase? CurrentViewModel
         {
             get => _currentViewModel;
             private set => SetProperty(ref _currentViewModel, value);
@@ -25,7 +25,7 @@ namespace Navigation_With_Dependency_Injection_And_Factory_Pattern.Services
         }
 
         #region Field(s)
-        private ViewModelBase _currentViewModel;
+        private ViewModelBase? _currentViewModel;
         private readonly Func<Type, ViewModelBase> _viewModelFactory;
         #endregion
     }
