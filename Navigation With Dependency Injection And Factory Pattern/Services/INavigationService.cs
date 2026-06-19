@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Navigation_With_Dependency_Injection_And_Factory_Pattern.Services
 {
-    internal interface INavigationService
+    public interface INavigationService
     {
         ViewModelBase? CurrentViewModel { get; }
         void NavigateTo<TViewModel>() where TViewModel : ViewModelBase;

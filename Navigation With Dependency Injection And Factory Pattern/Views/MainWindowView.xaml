@@ -8,6 +8,14 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding NavigationService.CurrentViewModel}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Auto" Command="{Binding NavigateAutoCommand}"/>
+            <Button Content="Teaching" Command="{Binding NaigateTeachingCommand}"/>
+        </StackPanel>
     </Grid>
 </Window>
