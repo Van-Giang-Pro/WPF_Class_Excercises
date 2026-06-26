@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Navigation_With_Dependency_Injection_And_Factory_Pattern.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Button Content="Teaching"/>
+    <Grid Background="LightGreen">
+        <TextBlock Text="ĐÂY LÀ TEACHING VIEW" FontSize="32" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

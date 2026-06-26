@@ -14,8 +14,8 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{Binding NavigationService.CurrentViewModel}"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Auto" Command="{Binding NavigateAutoCommand}"/>
-            <Button Content="Teaching" Command="{Binding NaigateTeachingCommand}"/>
+            <Button Content="Auto" Command="{Binding NavigateToAutoCommand}"/>
+            <Button Content="Teaching" Command="{Binding NavigateToTeachingCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
