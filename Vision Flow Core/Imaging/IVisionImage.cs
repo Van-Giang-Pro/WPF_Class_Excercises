@@ -1,6 +1,10 @@
 ﻿namespace Vision_Flow_Core.Imaging;
 
-public class IVisionImage
+public interface IVisionImage : IDisposable
 {
-    
+    int Width { get; }
+    int Height { get; }
+    int Channels { get; }
+    bool IsDisposed { get; }
+    IVisionImage Clone();
 }

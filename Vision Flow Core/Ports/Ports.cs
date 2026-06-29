@@ -20,7 +20,7 @@ public interface IInputPort : IPort
     bool IsOptional { get; }
 }
 
-public interface IOutphutPort : IPort
+public interface IOutputPort : IPort
 {
     
 }
@@ -45,5 +45,27 @@ public sealed class InputPort<T> : IInputPort
     {
         get => Value;
         set => Value = value is null ? default : (T)value;
+    }
+}
+
+public sealed class OutputPort<T> : IOutputPort
+{
+    public OutputPort(string name, string? displayName = null)
+    {
+        Name = name;
+        DisplayName = displayName ?? name;
+    }
+    
+    public string Name { get; }
+    public string DisplayName { get; }
+    public Type DataType => typeof(T);
+    public PortDirection Direction => PortDirection.Output;
+    
+    public T? Value { get; set; }
+
+    object? IPort.Value
+    {
+        set => Value;
+        set => Value = value is null ? default :
     }
 }
