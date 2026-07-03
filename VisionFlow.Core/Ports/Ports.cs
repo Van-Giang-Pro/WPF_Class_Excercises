@@ -1,4 +1,4 @@
-﻿namespace Vision_Flow_Core.Ports;
+﻿namespace VisionFlow.Core.Ports;
 
 public enum PortDirection
 {

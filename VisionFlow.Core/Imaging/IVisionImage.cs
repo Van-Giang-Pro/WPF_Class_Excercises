@@ -1,4 +1,4 @@
-﻿namespace Vision_Flow_Core.Imaging;
+﻿namespace VisionFlow.Core.Imaging;
 
 public interface IVisionImage : IDisposable
 {

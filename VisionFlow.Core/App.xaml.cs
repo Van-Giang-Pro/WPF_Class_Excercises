@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Vision_Flow_Core;
+namespace VisionFlow.Core;
 
 /// <summary>
 /// Interaction logic for App.xaml

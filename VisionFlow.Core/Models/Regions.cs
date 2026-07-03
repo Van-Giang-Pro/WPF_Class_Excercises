@@ -1,4 +1,4 @@
-﻿namespace Vision_Flow_Core.Models;
+﻿namespace VisionFlow.Core.Models;
 
 public readonly record struct RotationRectRegion(Point2d Center, double Width, double Height, double Theta);
 
