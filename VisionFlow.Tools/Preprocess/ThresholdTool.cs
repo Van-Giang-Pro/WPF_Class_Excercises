@@ -10,7 +10,7 @@ namespace VisionFlow.Tools.Preprocess;
 public sealed class ThresholdTool : VisionTool
 {
     private readonly InputPort<IVisionImage> _input;
-    private readonly OutputPort<IVisionImage _output;
+    private readonly OutputPort<IVisionImage> _output;
     private readonly ToolParameter<double> _threshold;
     private readonly ToolParameter<double> _maxValue;
     private readonly ToolParameter<ThresholdTypes> _type;

@@ -1,5 +1,4 @@
-﻿using System.CodeDom;
-using FxResources.System.Reflection;
+﻿using System.Reflection;
 using VisionFlow.Core.Tools;
 
 namespace VisionFlow.Core.Registry;
@@ -11,10 +10,10 @@ public sealed class ToolRegistry : IToolRegistry
 
     public void Register(Type toolType)
     {
-        if (!typeof(VisionTool).IsAssignableForm(toolType) || toolType.IsAbstract)
+        if (!typeof(VisionTool).IsAssignableFrom(toolType) || toolType.IsAbstract)
             throw new ArgumentException($"'{toolType.Name}' không phải là Visionl cụ thể", nameof(toolType));
 
-        var meta = toolType.GetCustomAttributes<ToolMetadataAttribute>()
+        var meta = toolType.GetCustomAttribute<ToolMetadataAttribute>()
                    ?? throw new ArgumentException($"'{toolType.Name}' thiếu [ToolMetadata]", nameof(toolType));
 
         if (toolType.GetConstructor(Type.EmptyTypes) is null)
@@ -22,7 +21,7 @@ public sealed class ToolRegistry : IToolRegistry
 
         VisionTool Factory() => (VisionTool)Activator.CreateInstance(toolType);
 
-        var display = string.IsNullOrEmpty(meta.Display) ? toolType.Name : meta.DisplayName;
+        var display = string.IsNullOrEmpty(meta.DisplayName) ? toolType.Name : meta.DisplayName;
         _byKey[meta.Key] = new ToolDescriptor(meta.Key, display, meta.Category, meta.Description, toolType, Factory);
     }
 
@@ -30,7 +29,7 @@ public sealed class ToolRegistry : IToolRegistry
     {
         foreach (var type in assembly.GetTypes())
         {
-            if (type.IsAbstract || !typeof(VisionTool).IsAssignableForm(type)) continue;
+            if (type.IsAbstract || !typeof(VisionTool).IsAssignableFrom(type)) continue;
             if (type.GetCustomAttribute<ToolMetadataAttribute>() is null) continue;
             Register(type);
         }

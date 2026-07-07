@@ -1,9 +1,9 @@
-﻿using FxResources.System.Reflection;
+﻿using System.Reflection;
 using VisionFlow.Core.Tools;
 
 namespace VisionFlow.Core.Registry;
 
-public interface IToolRegistrey
+public interface IToolRegistry
 {
     IReadOnlyCollection<ToolDescriptor> Descriptors { get; }
     void Register(Type toolType);

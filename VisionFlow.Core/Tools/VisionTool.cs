@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using VisionFlow.Core.Core.Ports;
+using VisionFlow.Core.Ports;
 
 namespace VisionFlow.Core.Tools;
 
@@ -12,7 +12,7 @@ public abstract class VisionTool : ITool
     protected VisionTool()
     {
         Id = Guid.NewGuid().ToString("N");
-        var meta = GetType().GetCustomAttributes<ToolMetadataAttribute>();
+        var meta = GetType().GetCustomAttribute<ToolMetadataAttribute>();
         TypeKey = meta?.Key ?? GetType().Name;
         DisplayName = !string.IsNullOrEmpty(meta?.DisplayName) ? meta!.DisplayName: GetType().Name;
         Category = meta?.Category ?? "General";
@@ -31,26 +31,39 @@ public abstract class VisionTool : ITool
     public long ElapsedMs { get; internal set; }
     public string? ErrorMessage { get; internal set; }
     
-    protected InputPort<T> AddInput<T>(string name. string? displayName = null, bool optional = false)
+    protected InputPort<T> AddInput<T>(string name, string? displayName = null, bool optional = false)
     {
-        var port = new InputPort<T>(name, DisplayNameAttribute, optional);
+        var port = new InputPort<T>(name, displayName, optional);
         _inputs.Add(port);
         return port;
     }
 
-    protected OutputPort<T> AddOuput<T>(string name, string? displayName = null)
+    protected OutputPort<T> AddOutput<T>(string name, string? displayName = null)
     {
         var port = new OutputPort<T>(name, displayName);
         _outputs.Add(port);
         return port;
     }
 
-    protected ToolParameter<T> addParameter<T>(
+    protected ToolParameter<T> AddParameter<T>(
+        string name, T value, string? displayName = null,
+        T? minimum = default, T? maximum = default,
+        string category = "General", int order = 0,
+        IReadOnlyList<string>? choices = null,
+        ParameterInteraction interaction = ParameterInteraction.None)
+    {
+        var p = new ToolParameter<T>(name, value, displayName, minimum, maximum, category, order,
+            choices, interaction);
+        _parameters.Add(p);
+        return p;
+    }
+
+    protected ToolParameter<string> AddChoiceParameter(
         string name, string value, IReadOnlyList<string> choices, string? displayName = null,
         string category = "General", int order = 0)
     {
-        var p = new ToolParameter<string>(name, value, displayName, minimum: default, maximum: default, category, order,
-            choices);
+        var p = new ToolParameter<string>(name, value, displayName, minimum: default, maximum: default,
+            category, order, choices);
         _parameters.Add(p);
         return p;
     }

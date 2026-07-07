@@ -1,6 +1,6 @@
 ﻿namespace VisionFlow.Core.Tools;
 
-public class IToolContext
+public interface IToolContext
 {
     CancellationToken CancellationToken { get; }
     

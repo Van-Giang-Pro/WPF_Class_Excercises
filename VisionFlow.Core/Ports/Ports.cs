@@ -30,12 +30,12 @@ public sealed class InputPort<T> : IInputPort
     public InputPort(string name, string? displayName = null, bool isOptional = false)
     {
         Name = name;
-        Displayname = displayName ?? name;
+        DisplayName = displayName ?? name;
         IsOptional = isOptional;
     }
     
     public string Name { get; }
-    public string Displayname { get; }
+    public string DisplayName { get; }
     public Type DataType => typeof(T);
     public PortDirection Direction => PortDirection.Input;
     public bool IsOptional { get; }
@@ -65,7 +65,7 @@ public sealed class OutputPort<T> : IOutputPort
 
     object? IPort.Value
     {
-        set => Value;
-        set => Value = value is null ? default :
+        get => Value;
+        set => Value = value is null ? default : (T)value;
     }
 }

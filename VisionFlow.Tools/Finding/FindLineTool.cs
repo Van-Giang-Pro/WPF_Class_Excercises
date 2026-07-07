@@ -207,8 +207,7 @@ public sealed class FindLineTool : VisionTool
         if (scored.Count > 0)
         {
             double thr = _minScore.Value * 0.5;
-            int idx = scored.FindIndex(e => e.score >= thr);
-            var best = idx >= 0 ? scored[idx] : scored.OrderByDescending(e => e.score).First();
+            var best = scored.OrderByDescending(e => e.score).First();
             if (best.score >= thr) valid.Add(best.point);
         }
         return valid;

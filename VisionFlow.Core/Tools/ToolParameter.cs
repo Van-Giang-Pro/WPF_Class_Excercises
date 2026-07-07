@@ -34,7 +34,7 @@ public sealed class ToolParameter<T> : IToolParameter
         string? displayName = null,
         T? minimum = default,
         T? maximum = default,
-        string catagory = "General",
+        string category = "General",
         int order = 0,
         IReadOnlyList<string>? choices = null,
         ParameterInteraction interaction = ParameterInteraction.None)
@@ -42,7 +42,7 @@ public sealed class ToolParameter<T> : IToolParameter
         Name = name;
         DisplayName = displayName ?? name;
         Value = value;
-        Minumum = minimum;
+        Minimum = minimum;
         Maximum = maximum;
         Category = category;
         Order = order;
@@ -51,7 +51,7 @@ public sealed class ToolParameter<T> : IToolParameter
     }
     public string Name { get; }
     public string DisplayName { get; }
-    public Type ValueType => typeof(T)
+    public Type ValueType => typeof(T);
     
     public T Value { get; set; }
     public T? Maximum { get; }
@@ -87,8 +87,8 @@ public sealed class ToolParameter<T> : IToolParameter
             if (underlying.IsEnum)
             {
                 return v is string es
-                    ? (T)Enum.Parse((underlying, es, ignoreCase: true))
-                    : (T)Enum.ToObject(underlying, System.Convert.ChangeType(v, Enum.GetUnderlyingType(underlying))
+                    ? (T)Enum.Parse(underlying, es, ignoreCase: true)
+                    : (T)Enum.ToObject(underlying, System.Convert.ChangeType(v, Enum.GetUnderlyingType(underlying)));
             }
 
             return (T)System.Convert.ChangeType(v, underlying, System.Globalization.CultureInfo.InvariantCulture);

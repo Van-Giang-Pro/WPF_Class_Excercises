@@ -32,30 +32,30 @@ public sealed class FindCircleTool : VisionTool
     private readonly ToolParameter<double> _maxRms;
     private readonly ToolParameter<double> _minScore;
     private readonly ToolParameter<bool> _outlierRejection;
-    private readonly <ToolParameter<double> _outlierThreshold;
+    private readonly ToolParameter<double> _outlierThreshold;
     private readonly ToolParameter<bool> _drawFitted;
-    private readonly ToolParameter<bool> _ drawRegion;
+    private readonly ToolParameter<bool> _drawRegion;
     private readonly ToolParameter<bool> _drawEdges;
 
-    publuc FindCircleTool()
+    public FindCircleTool()
     {
-        _inout = AddInput<IVisionImage>("Image", "Image");
-        _outImage = AddOuput<IVisionImage>("Image", "Overlay");
-        _outCircle = AddOuput<CircleResult>("Circle", "Circle");
+        _input = AddInput<IVisionImage>("Image", "Image");
+        _outImage = AddOutput<IVisionImage>("Image", "Overlay");
+        _outCircle = AddOutput<CircleResult>("Circle", "Circle");
         _outEdges = AddOutput<P2[]>("EdgesPoints", "Edge Points");
-        _outRms = AddOuput<double>("RMSError", "RMS Error");
-        _outScore = AddOuput<double>("Score", "Score");
+        _outRms = AddOutput<double>("RMSError", "RMS Error");
+        _outScore = AddOutput<double>("Score", "Score");
 
-        _region = addParameter("Region", new CircleRegion(new P2(150, 150), 100), "Search Region", category: "Region", order: 1, ParameterInteraction: ParameterInteraction.CircleRegion);
-        _useImageCenter = addParameter("UseImageCenter", false, "Use Image Center", category: "Region", order: 2);
-        _minRadius = addParameter("MinRadius", 5.0, "Min Radius", 1.0, 10000.0, category: "Region", order: 3);
-        _maxRadius = addParameter("MaxRadius", 5000.0, "Max Radius", 1.0, 10000.0, category: "Region", order: 4);
+        _region = AddParameter("Region", new CircleRegion(new P2(150, 150), 100), "Search Region", category: "Region", order: 1, interaction: ParameterInteraction.CircleRegion);
+        _useImageCenter = AddParameter("UseImageCenter", false, "Use Image Center", category: "Region", order: 2);
+        _minRadius = AddParameter("MinRadius", 5.0, "Min Radius", 1.0, 10000.0, category: "Region", order: 3);
+        _maxRadius = AddParameter("MaxRadius", 5000.0, "Max Radius", 1.0, 10000.0, category: "Region", order: 4);
 
-        _numCalipers = addParameter("NumberOfCalipers", 24, "Number Of Calipers", 3, 360, category: "Detection", order: 1);
-        _caliperLength = addParameter("CaliperLength", 30.0, "Caliper Length", 4.0, 500.0, category: "Detection", order: 2);
-        _radialOutward = addParameter("RadialSearchDirection", true, "Search Outward", category: "Detection", order: 3);
+        _numCalipers = AddParameter("NumberOfCalipers", 24, "Number Of Calipers", 3, 360, category: "Detection", order: 1);
+        _caliperLength = AddParameter("CaliperLength", 30.0, "Caliper Length", 4.0, 500.0, category: "Detection", order: 2);
+        _radialOutward = AddParameter("RadialSearchDirection", true, "Search Outward", category: "Detection", order: 3);
 
-        _edgeThreshold = addParameter("EdgeThreshold", 20.0, "Edge Threshold", 1.0, 255.0, category: "Detection", order: 1);
+        _edgeThreshold = AddParameter("EdgeThreshold", 20.0, "Edge Threshold", 1.0, 255.0, category: "Detection", order: 1);
         _edgePolarity = AddChoiceParameter("EdgePolarity", "Either", new[] { "DarkToLight", "LightToDark", "Either" }, "Edge Polarity", category: "Threshold", order: 2);
         _edgeFilterWidth = AddParameter("EdgeFilterWidth", 1, "Edge Filter Width", 0, 20, category: "Threshold", order: 3);
         _minEdgePoints = AddParameter("MinEdgePoints", 6, "Min Edge Points", 3, 360, category: "Threshold", order: 4);

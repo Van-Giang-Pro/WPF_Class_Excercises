@@ -10,7 +10,7 @@ namespace VisionFlow.Tools.Acquisition;
 [ToolMetadata("Grab", DisplayName = "Grab Image", Category = "InputSource", Description ="Load an image from a file path")]
 public sealed class GrabImageTool : VisionTool
 {
-    private readonly IToolParameter<string> _path;
+    private readonly ToolParameter<string> _path;
     private readonly ToolParameter<ImreadModes> _readMode;
     private readonly OutputPort<IVisionImage> _output;
 
