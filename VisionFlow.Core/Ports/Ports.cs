@@ -26,6 +26,10 @@ public interface IOutputPort : IPort
 }
 
 public sealed class InputPort<T> : IInputPort
+// Định nghĩa một loại object tên InputPort
+// Nó dùng kiểu generic<T> với <T> là một chỗ trống cho kiểu dữ liệu và sẽ được điền sau
+// Giống công thức nấu ăn ghi 1 kg nguyên liệu — lúc viết công thức chưa biết là thịt hay cá, khi nấu mới điền
+// Khai báo generic<T> để viết một class dùng chung cho mọi kiểu dữ liệu, thay vì copy paste nhiều class giống hệt nhau
 {
     public InputPort(string name, string? displayName = null, bool isOptional = false)
     {

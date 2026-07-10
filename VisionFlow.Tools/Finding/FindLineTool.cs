@@ -47,7 +47,8 @@ public sealed class FindLineTool : VisionTool
 
     public FindLineTool()
     {
-        _input = AddInput<IVisionImage>("Image", "Image");
+        _input = AddInput<IVisionImage>("Image", "Image"); 
+        // Chữ Image đầu tiên là Name cho Port còn cái Image thứ hai là DisplayName
         _outImage = AddOutput<IVisionImage>("Image", "Overlay");
         _outLine = AddOutput<LineResult>("Line", "Line");
         _outEdges = AddOutput<P2[]>("EdgePoints", "Edge Points");
