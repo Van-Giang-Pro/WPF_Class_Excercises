@@ -1,7 +1,7 @@
-﻿using System.Text.Json;
+﻿using System.Text.Json; // Thư viên Json có săn của .NET
 using System.Text.Json.Serialization;
-using VisionFlow.Core.Registry;
-using VisionFlow.Engine.Graph;
+using VisionFlow.Core.Registry; // IToolRegistry nhà máy tạo tool từ tên
+using VisionFlow.Engine.Graph; // FlowGraph, FlowNode, FlowConnection
 
 namespace VisionFlow.Engine.Persistence;
 
@@ -13,6 +13,7 @@ public static class FlowSerializer
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         Converters = { new JsonStringEnumConverter() }
     };
+    
     public static string Serialize(FlowGraph graph)
     {
         var dto = new FlowDto { Name = graph.Name, PixelSize = graph.PixelSize };
@@ -25,9 +26,11 @@ public static class FlowSerializer
                 X = node.X,
                 Y = node.Y
             };
+            
             foreach (var p in node.Tool.Parameters) nodeDto.Parameters[p.Name] = p.Value;
             dto.Nodes.Add(nodeDto);
         }
+        
         foreach (var c in graph.Connections)
         {
             dto.Connections.Add(new ConnectionDto
@@ -38,13 +41,15 @@ public static class FlowSerializer
                 TargetPort = c.TargetPort
             });
         }
+        
         return JsonSerializer.Serialize(dto, Options);
     }
+    
     public static FlowGraph Deserialize(string json, IToolRegistry registry)
     {
-        var dto = JsonSerializer.Deserialize<FlowDto>(json, Options)
-                  ?? throw new InvalidOperationException("Nội dung flow JSON rỗng hoặc không hợp lệ.");
+        var dto = JsonSerializer.Deserialize<FlowDto>(json, Options) ?? throw new InvalidOperationException("Nội dung flow JSON rỗng hoặc không hợp lệ.");
         var graph = new FlowGraph { Name = dto.Name, PixelSize = dto.PixelSize };
+        
         foreach (var n in dto.Nodes)
         {
             var tool = registry.Create(n.TypeKey);
@@ -57,6 +62,7 @@ public static class FlowSerializer
             }
             graph.AddNode(tool, n.X, n.Y);
         }
+        
         foreach (var c in dto.Connections)
         {
             if (graph.GetNode(c.SourceNodeId) is null || graph.GetNode(c.TargetNodeId) is null) continue;
@@ -64,29 +70,33 @@ public static class FlowSerializer
         }
         return graph;
     }
+    
     private static object? ExtractJson(object? raw, Type targetType)
     {
         if (raw is not JsonElement el) return raw;
         var t = Nullable.GetUnderlyingType(targetType) ?? targetType;
+        
         switch (el.ValueKind)
         {
-            case JsonValueKind.String:
-                return el.GetString();
+            case JsonValueKind.String: return el.GetString();
+            
             case JsonValueKind.Number:
                 if (t.IsEnum || t == typeof(int)) return el.GetInt32();
                 if (t == typeof(long)) return el.GetInt64();
                 if (t == typeof(float)) return el.GetSingle();
                 return el.GetDouble();
+            
             case JsonValueKind.True:
-            case JsonValueKind.False:
-                return el.GetBoolean();
-            case JsonValueKind.Null:
-                return null;
+                
+            case JsonValueKind.False : return el.GetBoolean();
+            
+            case JsonValueKind.Null : return null;
+            
             case JsonValueKind.Object:
-            case JsonValueKind.Array:
-                return el.Deserialize(t, Options);
-            default:
-                return el.GetRawText();
+                
+            case JsonValueKind.Array: return el.Deserialize(t, Options);
+            
+            default: return el.GetRawText();
         }
     }
 }
