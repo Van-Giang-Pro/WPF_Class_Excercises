@@ -1,17 +1,22 @@
 ﻿using System.Text.Json; // Thư viên Json có săn của .NET
-using System.Text.Json.Serialization;
-using VisionFlow.Core.Registry; // IToolRegistry nhà máy tạo tool từ tên
+using System.Text.Json.Serialization; // Khai báo phần tùy chỉnh nâng cao của Json để làm việc với JSon Serialization
+// Ở đây cần cho JsonStringEnumConverter (bộ chuyển enum sang chuỗi và ngược lại)
+using VisionFlow.Core.Registry; // IToolRegistry nhà máy tạo tool từ tên (dùng ở hàm Deserialize)
 using VisionFlow.Engine.Graph; // FlowGraph, FlowNode, FlowConnection
 
 namespace VisionFlow.Engine.Persistence;
 
-public static class FlowSerializer
+public static class FlowSerializer // Ta có static là không tạo instance (new FlowSerializer()) được
 {
     private static readonly JsonSerializerOptions Options = new()
+    // Gán một lần lúc khởi tạo, sau đó không cho gán lại (tránh sửa nhầm)
+    // Nghĩa là chỉ có 1 bản duy nhất cho toàn bộ chương trình
+    // Không cần tạo object mới cũng dùng được
+    // Tất cả các nơi trong class đều dùng chung 1 option
     {
-        WriteIndented = true,
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        Converters = { new JsonStringEnumConverter() }
+        WriteIndented = true, // là một tùy chọn trong System.Text.Json để định dạng JSON cho dễ đọc
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // là tùy chọn đổi tên property thành camelCase khi serialize JSON
+        Converters = { new JsonStringEnumConverter() } // Enum được lưu dưới dạng chuỗi, dễ đọc, rõ ràng hơn nhiều
     };
     
     public static string Serialize(FlowGraph graph)
