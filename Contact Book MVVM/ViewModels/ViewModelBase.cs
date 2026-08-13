@@ -7,7 +7,6 @@ namespace Contact_Book_MVVM.ViewModels;
 public abstract class ViewModelBase : INotifyPropertyChanged // Ta có abstract thì lớp này sinh ra để lớp khác kế thừa
 {
     public event PropertyChangedEventHandler? PropertyChanged; // Đăng ký sự kiện, dấu chấm hỏi là khi tạo ra chưa có ai đăng ký nghe nên nó có thể null
-    public event PropertyChangedEventHandler? PropertyChanged
     
     protected void OnPropertyChanged([CallerMemberName] string? name = null) 
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
