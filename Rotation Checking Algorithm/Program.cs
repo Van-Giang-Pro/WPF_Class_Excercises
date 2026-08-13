@@ -25,6 +25,9 @@ namespace Rotation_Checking_Algorithm
             b.ConvertTo(bf, MatType.CV32F); // Chuyển ảnh ra dạng số thực cho các giá trị pixel để lát nhân chia cộng trừ không bị mất số thập phân, thêm chính xác
             Scalar ma = Cv2.Mean(af, mask); // Tính độ sáng trung bình bằng cách cộng tổng tất cả lại rồi cho số điểm ảnh
             Scalar mb = Cv2.Mean(bf, mask); // Scalar là một hộp chứa 4 số thực
+            Mat az = (af - ma).ToMat(); // Trừ đi độ sáng trung bình, độ sáng lệch bao nhiêu so với mức sáng trung bình của chính ảnh đó
+            Mat bz = (bf - mb).ToMat(); // Khi thực hiện phép trừ bf - mb, kết quả trả về không phải là Mat ngay, mà là một đối tượng kiểu MatExpr (Matrix Expression – biểu thức ma trận) nên cần đổi về ToMat()
+            az.SetTo(0, ~mask);
             double res = 0.0;
             return res;
         }
