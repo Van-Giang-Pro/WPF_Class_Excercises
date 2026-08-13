@@ -6,11 +6,15 @@ namespace Contact_Book_MVVM.ViewModels;
 // Triển khai interface, lớp này cam kết triển khai cái của INotìyPropertyChanged
 public abstract class ViewModelBase : INotifyPropertyChanged // Ta có abstract thì lớp này sinh ra để lớp khác kế thừa
 {
-    public event PropertyChangedEventHandler? PropertyChanged; // Đăng ký sự kiện, dấu chấm hỏi là khi tạo ra chưa có ai đăng ký nghe nên nó có thể null
+    public event PropertyChangedEventHandler? PropertyChanged;
+    // Đăng ký sự kiện, dấu chấm hỏi là khi tạo ra chưa có ai đăng ký nghe nên nó có thể null
+    // Cái PropertyChangedEventHandler là cá delegate đã được định nghĩa sẵn trong dot net, đòi hỏi mọi handler (phương thức sẽ đăng ký) phải có chữ ký void Handler(object? sender, PropertyChangedEventArgs e)
+    // PropertyChanged là tên của kiện, đây là tên chuẩn mà giao diện INotifyPropertyChanged yêu cầu
+    // Ta có event là từ khóa khai báo sự kiện
     
     protected void OnPropertyChanged([CallerMemberName] string? name = null) 
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
+    
     // Ta có protected là chỉ cho phép lớp ViewModelBase và các lớp con kế thừa nó (như MainViewModel) được gọi hàm này
     // Cái nào gọi OnPropertyChanged thì nó sẽ điền name là tên thuộc tính đó, sau đó cái nào gắn event PropertyChanged nó sẽ
     // Invoke báo cho giao diện xaml để thay đổi, từ khóa new là bắn tín hiêu thay đổi kèm theo tên thuộc tính vừa thay đổi

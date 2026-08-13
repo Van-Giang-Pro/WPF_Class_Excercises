@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisionFlow.Engine", "Vision
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact Book MVVM", "Contact Book MVVM\Contact Book MVVM.csproj", "{1D388C4E-B490-443C-9108-26776DC7E18E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rotation Checking Algorithm", "Rotation Checking Algorithm\Rotation Checking Algorithm.csproj", "{C5748434-9CFB-454A-9684-8424E3E62548}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -253,6 +255,18 @@ Global
 		{1D388C4E-B490-443C-9108-26776DC7E18E}.Release|x64.Build.0 = Release|Any CPU
 		{1D388C4E-B490-443C-9108-26776DC7E18E}.Release|x86.ActiveCfg = Release|Any CPU
 		{1D388C4E-B490-443C-9108-26776DC7E18E}.Release|x86.Build.0 = Release|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Debug|x64.Build.0 = Debug|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Debug|x86.Build.0 = Debug|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Release|x64.ActiveCfg = Release|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Release|x64.Build.0 = Release|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Release|x86.ActiveCfg = Release|Any CPU
+		{C5748434-9CFB-454A-9684-8424E3E62548}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
