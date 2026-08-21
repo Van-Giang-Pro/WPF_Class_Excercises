@@ -99,7 +99,7 @@ namespace Rotation_Checking_Algorithm
             // Cv2.Circle(imgref, new Point((int)res.Value.center.X, (int)res.Value.center.Y), (int)res.Value.radius, Scalar.Red, 3);
             // Cv2.ImShow("Image", mask);
             Mat res = new();
-            res = RemoveLighting(imgref);
+            res = RemoveLighting(imgtest);
             Cv2.ImShow("Image", res);
             Cv2.WaitKey();
             // Phím tắt Ctrl + P để xem hàm đó có những thông số nào để set và thiết lập
