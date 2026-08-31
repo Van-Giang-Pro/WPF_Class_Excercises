@@ -1,3 +1,4 @@
+using System.Runtime.Intrinsics.X86;
 using OpenCvSharp;
 using OpenCvSharp.Flann;
 
@@ -69,6 +70,7 @@ namespace Rotation_Checking_Algorithm
             return bestangle;
             // Một lưu ý quan trọng là khi xoay ảnh là chỗ đỗ bóng cũng sẽ bị xoay theo, trong khi vị trí đổ bóng là cố định so với những cột mốc trên ảnh
         }
+        
         // Tách ánh sáng bằng cách lấy ảnh trừ đi bản làm mờ của chính nó thì sẽ còn lại đặc trưng
         static Mat RemoveLighting(Mat gray)
         {
@@ -80,12 +82,28 @@ namespace Rotation_Checking_Algorithm
             Cv2.Subtract(f, lighting, detail);
             return detail;
         }
+
+        static int NA = 3600; // Cột là 3600, là góc, chia hình tròn thành 3600 phần
+        static int NR = 240; // Hàng là bán kính, 240 là bán kính
+        // Trải vật thể từ hình tròn sang hình hình chữ nhật, hàng bằng góc và cột bằng bán kính
+        static Mat Unwrap(Mat gray, Point2f center, float radius)
+        {
+            Mat polar = new();
+            Cv2.WarpPolar(gray, polar, new Size(NR, NA), center, radius, InterpolationFlags.Linear, WarpPolarMode.Linear);
+            // Ta có InterpolationFlags.Linear là nội suy làm mịn là thuật toán pha trộn màu các pixel lân cận, giúp ảnh sau khi trải ra mịn đẹp, không bị răng cưa
+            // Còn có WarpPolarMode.Linear là chế độ trải tuyến tính là bán kính được trải phẳng đều đặn theo đường thẳng từ trong ra ngoài (r tăng đều theo cấp số cộng)
+            Mat outer = new Mat(polar, new Rect(NR / 4, 0, NR - NR / 4, NA)); // Cắt sau khi trải ra, góc tọa độ là bên mép trái, lấy phần ngoài, bỏ tâm ra
+            // Tâm đồng xu là mép góc bên trái
+            Mat res = new();
+            outer.ConvertTo(res, MatType.CV_32F); // Chuyển ảnh ra dạng số thực cho các giá trị pixel để lát nhân chia cộng trừ không bị mất số thập phân, thêm chính xác
+            return res;
+        }
         
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Mat imgref = Cv2.ImRead(@"C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\Image Library\refs\base_A_ref.png", ImreadModes.Grayscale);
-            Mat imgtest = Cv2.ImRead(@"C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\Image Library\test\base_A_013.jpg", ImreadModes.Grayscale);
+            Mat imgtest = Cv2.ImRead(@"C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\Image Library\test\base_A_001.jpg", ImreadModes.Grayscale);
             //Console.WriteLine(BruteForce(imgref, imgtest));
             // Nhấn ctrl với click chuột trái để xem hàm khai báo hoặc ctrl với Q để xem quick docummentation
             // Trong OpenCV thì trục Y hướng xuống nha
@@ -94,13 +112,26 @@ namespace Rotation_Checking_Algorithm
             // Console.WriteLine($"Kích thước : {imgref.Rows} x {imgref.Cols}");
             // Console.WriteLine($"Giá trị pixel tại tâm ảnh : {imgref.At<byte>(256, 256)}");
             // Console.WriteLine($"Giá trị pixel tại góc bên trái nền tối : {imgref.At<byte>(10, 10)}");
-            // (Point2f center, float radius)? res = FindCircle(imgref);
+            (Point2f center, float radius)? res = FindCircle(imgref);
+            Mat res1 = Unwrap(imgref, res.Value.center, res.Value.radius);
+            Mat res1_save = new Mat();
+            res1.ConvertTo(res1_save, MatType.CV_8UC1);
             // Console.WriteLine(res);
             // Cv2.Circle(imgref, new Point((int)res.Value.center.X, (int)res.Value.center.Y), (int)res.Value.radius, Scalar.Red, 3);
             // Cv2.ImShow("Image", mask);
-            Mat res = new();
-            res = RemoveLighting(imgtest);
-            Cv2.ImShow("Image", res);
+            // Mat res_imgtest = new();
+            // Mat res_imgref = new();
+            // res_imgtest = RemoveLighting(imgtest);
+            // res_imgref = RemoveLighting(imgref);
+            // Console.WriteLine($"res_imgtest : {res_imgtest.Type()}");
+            // Console.WriteLine($"res_imgref : {res_imgref.Type()}");
+            // res_imgtest.ConvertTo(res_imgtest, MatType.CV_8UC1, 255.0);
+            // res_imgref.ConvertTo(res_imgref, MatType.CV_8UC1, 255.0);
+            // Cv2.ImShow("Image_1", res_imgref);
+            // Cv2.ImShow("Image_2", res_imgtest);
+            // Console.WriteLine(BruteForce(res_imgref, res_imgtest));
+            Cv2.ImWrite(@"C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\Rotation_Checking_Project\Saved Images\Unwarp_Image.png", res1_save);
+            // Cv2.ImShow("Res", res1);
             Cv2.WaitKey();
             // Phím tắt Ctrl + P để xem hàm đó có những thông số nào để set và thiết lập
             // Vì Circle yêu cầu giá trị point là int mà res trả về float nên cần tạo điểm mới đổi về int
