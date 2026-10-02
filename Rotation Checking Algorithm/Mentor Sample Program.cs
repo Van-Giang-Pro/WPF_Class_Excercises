@@ -1,7 +1,8 @@
 using System; // Sử dụng các lệnh cơ bản của .NET
 using System.Collections.Generic; // Cung cấp các cấu trức dữ liệu dạng tập hợp
 using System.IO; // Dùng cho các lệnh đọc, quản lý file
-using System.Linq; // Cũng cấp các hàm mở rộng của LinQ để truy vấn, sắp xếp dữ liệu trên mảng
+using System.Linq;
+using System.Runtime.InteropServices.Marshalling; // Cũng cấp các hàm mở rộng của LinQ để truy vấn, sắp xếp dữ liệu trên mảng
 using OpenCvSharp; // Thư viện wrapper C# của OpenCV
 
 class Program
@@ -10,8 +11,9 @@ class Program
     const int NR = 240; // Số cột là bán kính
 
     // Tìm vật thể hình tròn
-    static (Point2f center, float radius)? FindCircle(Mat gray)
+    static (Point2f center, float radius)? FindCircle(Mat gray) 
     {
+        // Giá trị trả về là một kiểu tupple nên cần thêm value để thêm để truy xuất thông số center và radius
         using Mat blurred = new Mat(); // Tạo ra một bức ảnh rỗng tên là blurred và tự động dọn dẹp giải phóng bộ nhớ RAM ngay khi hàm chạy xong
         Cv2.GaussianBlur(gray, blurred, new Size(9, 9), 2); // Số 2 là sigma X quy định mức độ lan tỏa làm mở của thuật toán
         // Hough Circle Transform là tự động dò tìm các hình tròn trong bức ảnh và trả về danh sách các tọa độ tâm và bán kính của chúng
@@ -67,7 +69,7 @@ class Program
             // Lấy tổng cộng số mới từ số cũ là sẽ được tổng của dãy mới sau khi dịch phải một điểm
         }
         return hp;
-    }
+    } // Chạy hàm này cho đồng xu chuẩn thì ra sb còn cho đồng xu chuẩn thì ra sa
     
     // Tương quan vòng tròn
     static double[] CircularCorrScan(double[] sa, double[] sb)
@@ -136,5 +138,37 @@ class Program
         double y0 = corr[(k - 1 + NA) % NA], y1 = corr[k], y2 = corr[(k + 1) % NA]; // Lấy 3 điểm, một là đỉnh và 2 điểm liền kề
         double delta = 0.5 * (y0 - y2) / (y0 - 2 * y1 + y2 + 1e-12); // Tính phần số lẻ delta giúp xác định chính xác đỉnh thật sự của đỉnh đến từng phần trăm
         // Ta có 1e-12 tức là 1 nhân 10 mũ trừ 12 để cho mẫu số không bao giờ là 0 để không gây ra lỗi chia cho 0
+        double angle = ((-(k + delta) * 360.0 / NA) % 360.0 + 360.0) % 360.0;
+        // Ta có ((k + delta) * 360) / NA bi lệch bao nhiêu độ, thêm dấu - vô để kéo nó ngược về 
+        // Ta có cụm % 360 để thu gọn góc về trong phạm vi một vòng tròn -359 đến +359
+        // Ta có + 360 là kéo số âm lên thành số dương nhưng vô tình làm phình to quá mức
+        // Ta có % 360 ở cuối là gọt bỏ phần phình to quá mức
+        double na = Math.Sqrt(sa.Sum(v => v * v)), nb = Math.Sqrt(sb.Sum(v => v * v));
+        // Với na, nb là độ dài của vector
+        // Ta có v => v * v là quét từng phần tử trong mảng sb rồi lấy nó nhân với chính nó xong rồi cộng tổng lại
+        return (angle, y1 / (na * nb + 1e-12)) // Kết quả là conf ~ 1 thì rất chắc, còn xa 1 thì thấp và nghi ngờ
+    }
+    
+    // Trải hình tròn rồi gom bức ảnh 2D thành dãy số 1D sau đó tương quan vòng tròn bằng quét vòng tròn hoặc tương quan vòng tròn bằng biến đổi Fourier
+    static (double angle, double conf)? EstimatePolar(Mat refG, Mat testG, bool useFFT)
+    // Trả về góc mà tại đó có điểm tương quan cao nhất từ đó tính ra điểm tin cậy conf
+    {
+        var cr = FindCircle(refG);
+        var ct = FindCircle(testG);
+        if (cr == null || ct == null) return null;
+        using Mat Pa = Unwrap(refG, cr.Value.center, cr.Value.radius) // Ta có using là tự động giải phóng bộ nhớ RAM của ma trận A khi hàm chạy xong (tránh rỉ bộ nhớ)
+        using Mat Pb = Unwrap(testG, ct.Value.center, ct.Value.radius) // Ta có using là tự động giải phóng bộ nhớ RAM của ma trận A khi hàm chạy xong (tránh rỉ bộ nhớ)
+        double[] sa = AngularSignature(Pa); // Gom bức ảnh 2D thành một dãy số 1D
+        double[] sb = AngularSignature(Pb); // Gom bức ảnh 2D thành một dãy số 1D
+        double[] corr = useFFT ? CirculaCorrFFT(sa, sb) : CircularCorrScan(sa, sb);
+        return PeakToAngle(corr, sa, sb); // Hàm này trả về góc xoay và chỉ số tin cậy
+        // Hàm này nhận đầu vào là refG là ảnh chuẩn tham chiếu còn testG là ảnh đê test
+        // Dấu chấm hỏi cho phép nhận giá trị trả về có thể null
+    }
+    
+    // Khử ánh sáng
+    static Mat RemoveLighting(Mat gray)
+    {
+        
     }
 }
