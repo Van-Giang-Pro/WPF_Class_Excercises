@@ -99,7 +99,7 @@ namespace Rotation_Checking_Algorithm
             return res;
         }
         
-        static void Main(string[] args)
+        static void Simple_Program(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Mat imgref = Cv2.ImRead(@"C:\Users\fs120806\Desktop\Document\Programing Project\Net_Programming\Image Library\refs\base_A_ref.png", ImreadModes.Grayscale);
