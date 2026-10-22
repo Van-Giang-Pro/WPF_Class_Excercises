@@ -79,7 +79,7 @@
           <!--Dòng hiển thị cho thư mục ref-->
           <TextBlock Grid.Column="0" Text="📁 Ảnh Mẫu " FontWeight="SemiBold" Foreground="#CBD5E1" VerticalAlignment="Center"/>
           <TextBox Grid.Column="1" x:Name="RefPath"/>
-          <Button Grid.Column="2" Content="Chọn Thư Mục Ref" Click="BrowseRef"/>
+          <Button Grid.Column="2" Content="Chọn Thư Mục Ref" Click="Btn_Browse_Ref_OnClick"/>
         </Grid>
         <!--Dòng chia area cho thư mục test và nút chạy-->
         <Grid Grid.Row="2">
@@ -92,8 +92,8 @@
           <!--Dòng hiển thị cho thư mục test-->
           <TextBlock Grid.Column="0" Text="📁 Ảnh Test" FontWeight="SemiBold" Foreground="#CBD5E1" VerticalAlignment="Center"/>
           <TextBox Grid.Column="1" x:Name="TestPath"/>
-          <Button Grid.Column="2" Content="Chọn Thư Mục Test" Click="BrowseTest"/>
-          <Button Grid.Column="3" x:Name="RunButton" Content="Chạy Tất Cả" Background="#2563EB" BorderBrush="#3B82F6" FontWeight="Bold" Click="RunAll"/>
+          <Button Grid.Column="2" Content="Chọn Thư Mục Test" Click="Btn_Browse_Test_OnClick"/>
+          <Button Grid.Column="3" x:Name="RunButton" Content="Chạy Tất Cả" Background="#2563EB" BorderBrush="#3B82F6" FontWeight="Bold" Click="Btn_Run_All_OnClick"/>
         </Grid>
       </Grid>
     </Border>
@@ -115,7 +115,7 @@
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" Text="Danh Sách Kết Quả" FontSize="13" FontWeight="Bold" Foreground="#94A3B8" Margin="4,2,0,10"/>
-          <ListBox Grid.Row="1" x:Name="Results" Background="Transparent" Foreground="#FEFAF3" BorderThickness="0" SelectionChanged="SelectResult" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+          <ListBox Grid.Row="1" x:Name="Results" Background="Transparent" Foreground="#FEFAF3" BorderThickness="0" SelectionChanged="Sel_Change_OnSelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
               <DataTemplate>
                 <Border Background="#1A263D" CornerRadius="6" Padding="10,8" Margin="0,3" BorderBrush="#263854" BorderThickness="1">
@@ -142,8 +142,8 @@
         <!--Hàng con 0 : Thanh tùy chỉnh overlay và thông tin chi tiết-->
         <Border Grid.Row="0" Background="#131C2E" BorderBrush="#22304A" BorderThickness="1" CornerRadius="8" Padding="12,6" Margin="0,0,0,12">
           <DockPanel>
-            <Button DockPanel.Dock="Right" Content="💾 Lưu Overlay PNG" Click="SaveOverlay"/>
-            <CheckBox x:Name="ShowOverlay" Content="Hiển thị lớp vẽ Overlay" IsChecked="True" Foreground="#E8EEF8" FontWeight="SemiBold" VerticalAlignment="Center" Checked="ToggleOverlay" Unchecked="ToggleOverlay"/>
+            <Button DockPanel.Dock="Right" Content="💾 Lưu Overlay PNG" Click="Btn_Save_Overlay_OnClick"/>
+            <CheckBox x:Name="ShowOverlay" Content="Hiển thị lớp vẽ Overlay" IsChecked="True" Foreground="#E8EEF8" FontWeight="SemiBold" VerticalAlignment="Center" Checked="ShowOverlay_OnChecked" Unchecked="ShowOverlay_OnChecked"/>
             <TextBlock x:Name="Details" Margin="10,0" VerticalAlignment="Center" Foreground="#38BDF8" FontWeight="SemiBold" TextWrapping="Wrap"/>
           </DockPanel>
         </Border>
@@ -189,14 +189,14 @@
         </Grid>
         <!--Hàng con 2 : Chú thích màu sắc trực quan-->
         <Border Grid.Row="2" Background="#131C2E" BorderBrush="#22304A" BorderThickness="1" CornerRadius="8" Padding="12,8" Margin="0,10,0,0">
-          <TextBlock Text="Quy ước là chiều dương là cùng chiều kim đồng hồ" FontWeight="SemiBold" Foreground="#E2E8F0" TextWrapping="Wrap" Foreground="#94A3B8" FontSize="12.5"/>
+          <TextBlock Text="Quy ước là chiều dương là cùng chiều kim đồng hồ" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="#94A3B8" FontSize="12.5"/>
         </Border>
       </Grid>
     </Grid>
     <!--Hàng con 3 : Thanh trạng thái ở dưới cùng-->
     <Border Grid.Row="3" Background="#131C2E" BorderBrush="#22304A" BorderThickness="1" CornerRadius="8" Padding="14,6">
       <DockPanel>
-        <Button DockPanel.Dock="Right" x:Name="CancelButton" Content="⏹ Dừng" Background="#7F1D1D" BorderBrush="#991B1B" Click="Cancel" IsEnabled="False"/>
+        <Button DockPanel.Dock="Right" x:Name="CancelButton" Content="⏹ Dừng" Background="#7F1D1D" BorderBrush="#991B1B" Click="Btn_Cancel_OnClick" IsEnabled="False"/>
         <TextBlock x:Name="Status" Text="Sẵn sàng vui lòng chọn thư mục và nhấn chạy tất cả để bắt đầu" FontWeight ="SemiBold" Foreground="#94A3B8" VerticalAlignment="Center" FontSize="12.5"/>
       </DockPanel>
     </Border>

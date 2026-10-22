@@ -20,4 +20,39 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+    private void Btn_BrowseRef_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Button_BrowseTest_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Button_RunAll_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Button_SaveOverlay_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Button_Cancel_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Checkbox_ShowOverlay_OnChecked(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Listbox_SelectChange_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 }
